@@ -26,13 +26,14 @@ tasks {
 
 
     task<Copy>("copyJar") {
-            copy {
-                from("build/libs/fivefingerdiscount-1.0-SNAPSHOT-all.jar")
-                into("C:/Users/jeremy/DreamBot/Scripts")
-            }
+        from("build/libs/fivefingerdiscount-1.0-SNAPSHOT-all.jar")
+        into("C:/Users/jeremy/DreamBot/Scripts")
     }
 
     withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>().configureEach {
         finalizedBy(getTasksByName("copyJar", true))
+        minimize {
+            exclude("org.apache:log4j:")
+        }
     }
 }

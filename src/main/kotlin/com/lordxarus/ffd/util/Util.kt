@@ -5,6 +5,9 @@ import org.dreambot.api.Client.getLocalPlayer
 import org.dreambot.api.wrappers.cache.nodes.RenderableNode
 import org.dreambot.api.wrappers.interactive.NPC
 import org.dreambot.api.wrappers.interactive.Player
+import java.awt.Image
+import java.net.URL
+import javax.imageio.ImageIO
 
 fun List<NPC>.getClosestNPC(): NPC? {
     var distance = Double.MAX_VALUE
@@ -25,3 +28,5 @@ fun Player.isStunned(): Boolean {
     val height = RenderableNode(getLocalPlayer().reference).height
      return height == 1000
 }
+
+fun readImageUrl(url: String): Image? = ImageIO.read(URL(url))
